@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAISY &amp; KEN · 2027.03.14</title>
+<meta name="description" content="JAISY 與 KEN 的婚禮：2027 年 3 月 14 日（星期日），尖沙咀 The ONE 16 樓 The AIR。">
+<meta name="theme-color" content="#F6F4EF">
+<meta property="og:title" content="JAISY &amp; KEN · 2027.03.14">
+<meta property="og:description" content="2027 年 3 月 14 日 · 尖沙咀 The ONE 16 樓 The AIR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F6F4EF'/%3E%3Cellipse cx='32' cy='32' rx='15' ry='21' fill='none' stroke='%2377826F' stroke-width='2'/%3E%3C/svg%3E">
+
+<!-- 字體：Bodoni Moda（英文襯線 Didone，與請柬同一路）+ Noto Serif TC（中文明體，對應請柬的宋體感）+ Jost（地址、電話等細節）
+     走鏡像源的 css2 介面（語法同 Google Fonts），失敗時回落到 Songti / Georgia 與 system-ui -->
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="preconnect" href="https://sf3-scmcdn-cn.feishucdn.com" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Bodoni+Moda:wght@400&amp;family=Jost:wght@400;500&amp;family=Noto+Serif+TC:wght@400&amp;display=swap">
+
+<style>
+/* ============================================================
+   JAISY & KEN — 婚禮網頁
+   取自紙本請柬：奶油白 #F6F4EF、墨綠灰 #3A423B、鼠尾草 #77826F（只用於小標與細線）
+   無投影、無圓角（按鈕除外）、單欄 720px
+   ============================================================ */
+
+:root{
+  --cream:     #F6F4EF;
+  --cream-deep:#EEEAE1;
+  --ink:       #3A423B;
+  --sage:      #77826F;
+  --hair:      rgba(58,66,59,.18);
+  --hair-strong: rgba(58,66,59,.34);
+  --serif: "Bodoni Moda", "Noto Serif TC", "Songti SC", "Noto Serif SC", Georgia, serif;
+  --sans:  "Jost", "PingFang HK", "PingFang TC", system-ui, -apple-system, "Microsoft JhengHei", sans-serif;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.75;
+  letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{ background:var(--sage); color:var(--cream); }
+
+img{ max-width:100%; display:block; }
+a{ color:var(--sage); text-decoration:none; }
+:focus-visible{ outline:1px solid var(--sage); outline-offset:3px; }
+
+/* ---------- 封面照片（滿版） ---------- */
+
+.cover-photo{
+  position:relative;
+  width:100%;
+  max-width:1040px;
+  margin:0 auto;
+  aspect-ratio:6/5;
+  overflow:hidden;
+  background:var(--cream-deep);
+}
+/* 相片比框高 12%，留給視差（捲動時在框內往下移，最多 6%） */
+.cover-photo img{
+  position:absolute;
+  left:0;
+  top:-6%;
+  width:100%;
+  height:112%;
+  object-fit:cover;
+  object-position:center 46%;
+  will-change:transform;
+}
+
+/* ---------- 內文欄 ---------- */
+
+.sheet{
+  position:relative;
+  z-index:1;
+  max-width:720px;
+  margin:0 auto;
+  padding:0 32px 96px;
+}
+
+/* 小標：鼠尾草色、字距拉開 */
+.label{
+  margin:0 0 28px;
+  font-size:11px;
+  line-height:1.6;
+  letter-spacing:.34em;
+  color:var(--sage);
+}
+
+.hair{
+  width:96px;
+  height:1px;
+  margin:0 auto;
+  background:var(--hair);
+}
+.hair--wide{ width:100%; }
+
+/* ---------- 封面文字 ---------- */
+
+.cover-text{
+  padding:clamp(44px,7vh,68px) 32px 0;
+  text-align:center;
+}
+
+.seal{
+  margin:0 0 clamp(22px,4vh,34px);
+  font-family:var(--serif);
+  font-size:20px;
+  line-height:1;
+  letter-spacing:.1em;
+  color:var(--sage);
+}
+
+.names{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(22px,4.4vw,32px);
+  line-height:1.4;
+  letter-spacing:.32em;
+  text-indent:.32em;
+  color:var(--ink);
+}
+.names .amp{ font-size:.86em; }
+
+.cn{
+  margin:18px 0 0;
+  font-family:var(--serif);
+  font-size:14px;
+  letter-spacing:.22em;
+  text-indent:.22em;
+  color:rgba(58,66,59,.78);
+}
+
+.date{
+  margin:clamp(30px,5vh,44px) 0 0;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(32px,6.4vw,46px);
+  line-height:1.2;
+  letter-spacing:.06em;
+  text-indent:.06em;
+}
+
+.lunar{
+  margin:10px 0 0;
+  font-family:var(--serif);
+  font-size:13px;
+  letter-spacing:.12em;
+  color:rgba(58,66,59,.7);
+}
+
+.times{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:clamp(14px,3vw,26px);
+  flex-wrap:wrap;
+  margin:clamp(26px,4vh,34px) 0 0;
+}
+.times .sep{ color:var(--sage); font-size:12px; }
+
+.t{
+  display:inline-flex;
+  align-items:baseline;
+  gap:9px;
+}
+.t .num{
+  font-family:var(--serif);
+  font-size:16px;
+  letter-spacing:.04em;
+}
+.t .what{
+  font-family:var(--serif);
+  font-size:15px;
+  letter-spacing:.08em;
+}
+
+.venue{
+  margin:14px 0 0;
+  font-family:var(--serif);
+  font-size:14px;
+  letter-spacing:.1em;
+  color:rgba(58,66,59,.82);
+}
+
+/* ---------- 倒數 ---------- */
+
+.count-wrap{
+  max-width:360px;
+  margin:clamp(28px,4.5vh,40px) auto 0;
+  padding-top:clamp(22px,3vh,30px);
+  border-top:1px solid var(--hair);
+}
+.count-cap{
+  margin:0 0 14px;
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.34em;
+  text-indent:.34em;
+  color:var(--sage);
+}
+.count{
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  gap:clamp(14px,3.6vw,26px);
+}
+.seg{ min-width:44px; text-align:center; }
+.seg .num{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(20px,4.2vw,26px);
+  line-height:1.15;
+  letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+}
+.seg .unit{
+  display:block;
+  margin-top:5px;
+  font-family:var(--sans);
+  font-size:9px;
+  letter-spacing:.26em;
+  text-indent:.26em;
+  color:var(--sage);
+}
+.count-today{
+  margin:0;
+  font-family:var(--serif);
+  font-size:clamp(18px,3.6vw,22px);
+  letter-spacing:.12em;
+  text-indent:.12em;
+}
+
+/* ---------- 謹訂 ---------- */
+
+.preface{
+  margin-top:clamp(58px,9vh,92px);
+  padding-top:clamp(38px,6vh,54px);
+  border-top:1px solid var(--hair);
+  text-align:center;
+}
+.preface .label{ letter-spacing:.5em; }
+
+.hosts{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  width:max-content;
+  max-width:100%;
+  margin:0 auto;
+  text-align:left;
+  font-family:var(--serif);
+  font-size:15px;
+  letter-spacing:.1em;
+  color:var(--ink);
+}
+.hosts p{
+  margin:0 0 6px;
+  line-height:2;
+  white-space:nowrap;
+}
+.hosts .role{
+  font-size:12px;
+  letter-spacing:.16em;
+  color:rgba(58,66,59,.62);
+  padding:0 4px;
+}
+
+/* ---------- 當日 ---------- */
+
+.section{
+  margin-top:clamp(62px,10vh,100px);
+  padding-top:clamp(38px,6vh,54px);
+  border-top:1px solid var(--hair);
+}
+
+.schedule{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.schedule li{
+  display:grid;
+  grid-template-columns:96px 1fr;
+  align-items:baseline;
+  gap:0 clamp(14px,3vw,26px);
+  padding:20px 0;
+  border-bottom:1px solid var(--hair);
+}
+.schedule li:first-child{ border-top:1px solid var(--hair); }
+.schedule .num{
+  font-family:var(--serif);
+  font-size:17px;
+  letter-spacing:.04em;
+  color:var(--ink);
+}
+.schedule .what{
+  font-family:var(--serif);
+  font-size:16px;
+  letter-spacing:.1em;
+}
+.schedule .note{
+  display:block;
+  margin-top:2px;
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:.06em;
+  color:rgba(58,66,59,.58);
+}
+
+/* ---------- 地點 ---------- */
+
+.map{
+  display:block;
+  width:100%;
+  background:var(--cream-deep);
+}
+
+.address{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  margin:26px 0 0;
+}
+.address-text{
+  margin:0;
+  font-family:var(--serif);
+  font-size:15px;
+  line-height:1.9;
+  letter-spacing:.06em;
+  user-select:all;
+}
+.copy{
+  flex:none;
+  padding:8px 18px;
+  min-height:36px;
+  font-size:12px;
+  line-height:18px;
+  letter-spacing:.1em;
+  border-radius:200px;
+  border:1px solid var(--hair-strong);
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+  font-family:var(--sans);
+  transition:background-color .24s ease;
+}
+.copy:hover{ background:rgba(58,66,59,.05); }
+
+.transit{
+  margin:18px 0 0;
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.9;
+  color:rgba(58,66,59,.72);
+}
+
+/* ---------- 回覆 ---------- */
+
+.rsvp-note{
+  margin:0;
+  font-family:var(--serif);
+  font-size:15px;
+  line-height:2;
+  letter-spacing:.06em;
+}
+.rsvp-note strong{ font-weight:400; color:var(--ink); }
+
+/* 內嵌回覆表：髮線外框，裡面降飽和度，免得 Google 的紫藍把紙感拉走 */
+.form-wrap{ margin:clamp(26px,4vh,34px) 0 0; }
+.form-frame{
+  position:relative;
+  border:1px solid var(--hair);
+  background:#fff;
+  overflow:hidden;
+}
+/* 底部柔光，暗示框內還可往下滑 */
+.form-frame::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:22px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.92));
+  pointer-events:none;
+}
+.form-frame iframe{
+  display:block;
+  width:100%;
+  height:clamp(760px,86vh,940px);
+  border:0;
+  background:#fff;
+  filter:saturate(.22) contrast(1.02);
+}
+.form-hint{
+  margin:12px 0 0;
+  font-family:var(--sans);
+  font-size:12px;
+  line-height:1.9;
+  letter-spacing:.05em;
+  color:rgba(58,66,59,.58);
+}
+.form-hint a{
+  color:rgba(58,66,59,.72);
+  border-bottom:1px solid var(--hair);
+  padding-bottom:1px;
+}
+.form-hint a:hover{ border-bottom-color:var(--sage); }
+
+
+.phones{
+  margin:18px 0 0;
+  font-family:var(--sans);
+  font-size:13px;
+  letter-spacing:.06em;
+  color:rgba(58,66,59,.66);
+}
+.phones a{ color:inherit; border-bottom:1px solid var(--hair); padding-bottom:1px; }
+.phones a:hover{ border-bottom-color:var(--sage); }
+
+/* ---------- 相冊 ---------- */
+
+.album{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.shot{
+  display:block;
+  width:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  aspect-ratio:4/5;
+  background:var(--cream-deep);
+  overflow:hidden;
+  cursor:zoom-in;
+}
+.shot img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s cubic-bezier(.22,.61,.36,1);
+}
+.shot:hover img{ transform:scale(1.02); }
+.shot:focus-visible{ outline:1px solid var(--sage); outline-offset:2px; }
+
+/* 逐格入場：只有 JS 加上 .js-stagger 才會先隱藏，沒有 JS 也看得到相 */
+.album.js-stagger li{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1);
+  transition-delay:var(--d,0s);
+}
+.album.js-stagger li.is-in{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .album.js-stagger li{ opacity:1; transform:none; transition:none; }
+}
+
+.album-note{
+  margin:18px 0 0;
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:.12em;
+  color:rgba(58,66,59,.55);
+}
+
+/* 大圖檢視 */
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(16px,4vw,56px);
+  background:rgba(26,28,24,.94);
+}
+.lightbox[hidden]{ display:none; }
+.lb-img{
+  max-width:100%;
+  max-height:84vh;
+  width:auto;
+  height:auto;
+}
+.lb-btn{
+  position:absolute;
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:var(--cream);
+  opacity:.62;
+  cursor:pointer;
+  transition:opacity .2s ease;
+}
+.lb-btn:hover{ opacity:1; }
+.lb-btn:focus-visible{
+  outline:1px solid rgba(246,244,239,.55);
+  outline-offset:-8px;
+  border-radius:50%;
+}
+.lb-close{ top:10px; right:10px; }
+.lb-prev{ left:10px; top:50%; transform:translateY(-50%); }
+.lb-next{ right:10px; top:50%; transform:translateY(-50%); }
+.lb-count{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:18px;
+  margin:0;
+  text-align:center;
+  font-family:var(--sans);
+  font-size:12px;
+  letter-spacing:.2em;
+  color:rgba(246,244,239,.66);
+}
+
+/* 鼠標小心心 */
+.hearts{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  pointer-events:none;
+  overflow:hidden;
+}
+.heart{
+  position:absolute;
+  width:12px;
+  height:12px;
+  color:rgba(119,130,111,.8);
+  animation:heart-drift var(--dur,1s) cubic-bezier(.2,.6,.3,1) forwards;
+  will-change:transform, opacity;
+}
+.heart svg{ display:block; width:100%; height:100%; }
+@keyframes heart-drift{
+  0%   { opacity:0;  transform:translate3d(0,0,0) scale(.45) rotate(var(--r,0deg)); }
+  18%  { opacity:.8; }
+  100% { opacity:0;  transform:translate3d(var(--dx,0px),-40px,0) scale(1) rotate(var(--r,0deg)); }
+}
+@media (hover:none), (pointer:coarse){
+  .hearts{ display:none; }
+}
+
+/* ---------- 頁尾 ---------- */
+
+.foot{
+  margin-top:clamp(64px,10vh,100px);
+  padding-top:26px;
+  border-top:1px solid var(--hair);
+  text-align:center;
+}
+.foot p{
+  margin:0;
+  font-family:var(--serif);
+  font-size:11px;
+  letter-spacing:.28em;
+  color:rgba(58,66,59,.5);
+}
+
+/* ---------- 動效：捲動只做 opacity .8 → 1 ---------- */
+
+@media (prefers-reduced-motion: no-preference){
+  .reveal{
+    opacity:.8;
+    transition:opacity .4s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.is-in{ opacity:1; }
+}
+
+/* ---------- 窄屏 ---------- */
+
+@media (max-width:600px){
+  .sheet{ padding:0 32px 72px; }
+
+  .cover-photo{ aspect-ratio:6/5; }
+
+  .cover-text{ padding:40px 32px 0; }
+
+  .names{ font-size:clamp(20px,6.2vw,26px); letter-spacing:.26em; text-indent:.26em; }
+  .cn{ font-size:13px; letter-spacing:.16em; text-indent:.16em; }
+  .date{ font-size:clamp(30px,9vw,40px); }
+
+  .times{ display:block; }
+  .times .sep{ display:none; }
+  .t{ display:flex; justify-content:center; margin:6px 0; }
+
+  .hosts{ font-size:13px; letter-spacing:.04em; }
+
+  .schedule li{ grid-template-columns:74px 1fr; gap:0 12px; }
+  .schedule .num{ font-size:16px; }
+
+  .address{ flex-direction:column; gap:12px; }
+  .copy{ align-self:flex-start; }
+
+  .album{ grid-template-columns:repeat(2,1fr); gap:6px; }
+
+  .form-frame{ height:920px; }
+  .foot{ margin-top:62px; }
+}
+
+/* ---------- 列印 ---------- */
+
+@media print{
+  body{ background:#fff; }
+  .cover-photo{ height:42vh; }
+  .map,.copy,.form-wrap{ display:none; }
+  .sheet{ max-width:none; padding:0; }
+  .reveal{ opacity:1 !important; }
+  section{ break-inside:avoid; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- [替換照片] 封面照：assets/cover.jpg（目前這張是從請柬 PDF 取出的，換成較寬的橫幅更佳，建議 1800px 以上） -->
+<figure class="cover-photo">
+  <img src="assets/cover.jpg" alt="JAISY 與 KEN 的婚照" fetchpriority="high">
+</figure>
+
+<main class="sheet">
+
+  <!-- ============ 封面文字 ============ -->
+  <header class="cover-text">
+    <p class="seal" data-reveal>囍</p>
+
+    <h1 class="names" data-reveal>JAISY <span class="amp">&amp;</span> KEN</h1>
+
+    <p class="cn" data-reveal>黎彥麟　·　潘綺彤</p>
+
+    <p class="date" data-reveal>2027.03.14</p>
+    <p class="lunar" data-reveal>星期日　農曆丁未年二月初七</p>
+
+    <div class="times" data-reveal>
+      <span class="t"><span class="num">11:00</span><span class="what">觀禮儀式</span></span>
+      <span class="sep">·</span>
+      <span class="t"><span class="num">12:00</span><span class="what">Cocktail 婚宴</span></span>
+    </div>
+
+    <p class="venue" data-reveal>The AIR　尖沙咀 The ONE 16 樓</p>
+
+    <div class="count-wrap" data-reveal>
+      <p class="count-cap">倒　數</p>
+      <!-- 目標：2027-03-14 11:00（HKT）。改婚期時連 JS 內的 TARGET 一併改 -->
+      <div class="count" id="count" role="timer" aria-label="距離婚禮">
+        <div class="seg"><span class="num" id="cd-d">000</span><span class="unit">天</span></div>
+        <div class="seg"><span class="num" id="cd-h">00</span><span class="unit">時</span></div>
+        <div class="seg"><span class="num" id="cd-m">00</span><span class="unit">分</span></div>
+        <div class="seg"><span class="num" id="cd-s">00</span><span class="unit">秒</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ 謹訂 ============ -->
+  <section class="preface" data-reveal>
+    <p class="label">謹　訂</p>
+    <div class="hosts">
+      <!-- [替換] 女方父親的名字在請柬上仍是「潘〔父名〕」，這裡暫以「潘府」代替 -->
+      <p>黎全　黃夢儀　<span class="role">長子</span>　彥麟</p>
+      <p>潘府　蔡紫眉　<span class="role">幼女</span>　綺彤</p>
+    </div>
+  </section>
+
+  <!-- ============ 當日 ============ -->
+  <section class="section" aria-labelledby="day-label">
+    <p class="label" id="day-label" data-reveal>當　日</p>
+    <ul class="schedule" data-reveal>
+      <li>
+        <span class="num">11:00</span>
+        <span class="what">觀禮儀式</span>
+      </li>
+      <li>
+        <span class="num">12:00</span>
+        <span class="what">Cocktail 婚宴</span>
+      </li>
+    </ul>
+    <p class="venue" style="margin-top:22px;text-align:left">The AIR　尖沙咀 The ONE 16 樓</p>
+  </section>
+
+  <!-- ============ 地點 ============ -->
+  <section class="section" aria-labelledby="place-label">
+    <p class="label" id="place-label" data-reveal>地　點</p>
+
+    <!-- [替換地圖 URL] 目前指向 The ONE（尖沙咀彌敦道 100 號）；換場地時改 q= 後面的地址即可 -->
+    <iframe
+      class="map"
+      src="https://www.google.com/maps?q=The+ONE,+100+Nathan+Road,+Tsim+Sha+Tsui,+Hong+Kong&amp;output=embed&amp;hl=zh-HK&amp;z=17"
+      width="100%" height="360"
+      style="border:1px solid rgba(58,66,59,.34); filter:grayscale(0.6) contrast(0.95);"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="The ONE 尖沙咀地圖"></iframe>
+
+    <div class="address">
+      <p class="address-text" id="address-text">尖沙咀彌敦道 100 號 The ONE 16 樓<br>The AIR</p>
+      <button class="copy" type="button" id="copy-address">複製地址</button>
+    </div>
+
+    <!-- [替換交通提示] -->
+    <p class="transit">港鐵尖沙咀站 B1 出口，沿彌敦道向北行約 3 分鐘即到 The ONE；入商場後搭高層電梯上 16 樓。</p>
+  </section>
+
+  <!-- ============ 相冊 ============ -->
+  <section class="section" aria-labelledby="album-label">
+    <p class="label" id="album-label" data-reveal>相　冊</p>
+
+    <!-- 相冊：36 張全部。原相在 Photo/，壓成 assets/album-01…36.jpg（長邊 1200、q74，共 5.3MB，滾到才載入） -->
+    <ul class="album" data-reveal>
+      <li><button class="shot" type="button" data-src="assets/album-01.jpg" data-alt="森林裡牽著手往前走">
+        <img src="assets/album-01.jpg" alt="森林裡牽著手往前走" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-02.jpg" data-alt="白紗前，兩人站定看著鏡頭">
+        <img src="assets/album-02.jpg" alt="白紗前，兩人站定看著鏡頭" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-03.jpg" data-alt="樹蔭下並肩站著，她手裡一把小花">
+        <img src="assets/album-03.jpg" alt="樹蔭下並肩站著，她手裡一把小花" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-04.jpg" data-alt="林間的石頭上坐著，白紗一路散開">
+        <img src="assets/album-04.jpg" alt="林間的石頭上坐著，白紗一路散開" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-05.jpg" data-alt="林道正中，白紗長長拖到鏡頭前">
+        <img src="assets/album-05.jpg" alt="林道正中，白紗長長拖到鏡頭前" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-06.jpg" data-alt="杉樹前，她靠在他肩頭">
+        <img src="assets/album-06.jpg" alt="杉樹前，她靠在他肩頭" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-07.jpg" data-alt="松針葉縫裡，兩張笑臉貼在一起">
+        <img src="assets/album-07.jpg" alt="松針葉縫裡，兩張笑臉貼在一起" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-08.jpg" data-alt="紗裙揚起，兩人在林間相擁">
+        <img src="assets/album-08.jpg" alt="紗裙揚起，兩人在林間相擁" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-09.jpg" data-alt="她提起裙襬，他站在倒木上舉手">
+        <img src="assets/album-09.jpg" alt="她提起裙襬，他站在倒木上舉手" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-10.jpg" data-alt="靠近的特寫，兩人都笑出聲">
+        <img src="assets/album-10.jpg" alt="靠近的特寫，兩人都笑出聲" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-11.jpg" data-alt="大樹腳下，兩人站著說話">
+        <img src="assets/album-11.jpg" alt="大樹腳下，兩人站著說話" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-12.jpg" data-alt="棕櫚葉前，藍灰紗裙一層層疊下來">
+        <img src="assets/album-12.jpg" alt="棕櫚葉前，藍灰紗裙一層層疊下來" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-13.jpg" data-alt="蕨葉之間，他一手撥開額前的髮">
+        <img src="assets/album-13.jpg" alt="蕨葉之間，他一手撥開額前的髮" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-14.jpg" data-alt="他張開手臂往她一側傾過去">
+        <img src="assets/album-14.jpg" alt="他張開手臂往她一側傾過去" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-15.jpg" data-alt="公路上她仰頭閉眼，他側身望向鏡頭">
+        <img src="assets/album-15.jpg" alt="公路上她仰頭閉眼，他側身望向鏡頭" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-16.jpg" data-alt="公路邊，他抬手擋住斜光">
+        <img src="assets/album-16.jpg" alt="公路邊，他抬手擋住斜光" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-17.jpg" data-alt="山與雲海前，兩人隔著路對望">
+        <img src="assets/album-17.jpg" alt="山與雲海前，兩人隔著路對望" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-18.jpg" data-alt="山林裡，兩個站得很遠的身影">
+        <img src="assets/album-18.jpg" alt="山林裡，兩個站得很遠的身影" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-19.jpg" data-alt="公路中央，一人蹲著一人站著">
+        <img src="assets/album-19.jpg" alt="公路中央，一人蹲著一人站著" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-20.jpg" data-alt="路邊草地上，兩人牽手對視">
+        <img src="assets/album-20.jpg" alt="路邊草地上，兩人牽手對視" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-21.jpg" data-alt="雙黃線兩邊，兩人各站一側">
+        <img src="assets/album-21.jpg" alt="雙黃線兩邊，兩人各站一側" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-22.jpg" data-alt="路邊石墩上，一人坐一人站">
+        <img src="assets/album-22.jpg" alt="路邊石墩上，一人坐一人站" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-23.jpg" data-alt="灌木前，兩人併排蹲坐">
+        <img src="assets/album-23.jpg" alt="灌木前，兩人併排蹲坐" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-24.jpg" data-alt="草原上，兩人側身相對站著">
+        <img src="assets/album-24.jpg" alt="草原上，兩人側身相對站著" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-25.jpg" data-alt="他伸手遞一朵小黃花到她面前">
+        <img src="assets/album-25.jpg" alt="他伸手遞一朵小黃花到她面前" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-26.jpg" data-alt="她低著頭，手裡捏著那朵花">
+        <img src="assets/album-26.jpg" alt="她低著頭，手裡捏著那朵花" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-27.jpg" data-alt="草叢與蒲葦之間，兩人站著">
+        <img src="assets/album-27.jpg" alt="草叢與蒲葦之間，兩人站著" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-28.jpg" data-alt="他從後面抱住她，兩個人都看鏡頭">
+        <img src="assets/album-28.jpg" alt="他從後面抱住她，兩個人都看鏡頭" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-29.jpg" data-alt="樹影裡，兩人站著互相看著">
+        <img src="assets/album-29.jpg" alt="樹影裡，兩人站著互相看著" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-30.jpg" data-alt="木棧道穿過草叢，兩人一前一後">
+        <img src="assets/album-30.jpg" alt="木棧道穿過草叢，兩人一前一後" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-31.jpg" data-alt="天空很藍，兩人站在鐵軌上抬頭">
+        <img src="assets/album-31.jpg" alt="天空很藍，兩人站在鐵軌上抬頭" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-32.jpg" data-alt="藍天白雲下，兩人在草坡上站著">
+        <img src="assets/album-32.jpg" alt="藍天白雲下，兩人在草坡上站著" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-33.jpg" data-alt="樹下草地上，兩人併排坐著">
+        <img src="assets/album-33.jpg" alt="樹下草地上，兩人併排坐著" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-34.jpg" data-alt="草地邊，兩人蹲坐著說話">
+        <img src="assets/album-34.jpg" alt="草地邊，兩人蹲坐著說話" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-35.jpg" data-alt="河邊的木椅上，兩人坐著相視而笑">
+        <img src="assets/album-35.jpg" alt="河邊的木椅上，兩人坐著相視而笑" loading="lazy"></button></li>
+      <li><button class="shot" type="button" data-src="assets/album-36.jpg" data-alt="山腰芒草之間，兩個小小的身影">
+        <img src="assets/album-36.jpg" alt="山腰芒草之間，兩個小小的身影" loading="lazy"></button></li>
+    </ul>
+
+    <p class="album-note">二〇二六年十月十八日　·　三十六張　·　點開可看大圖</p>
+  </section>
+
+  <!-- ============ 回覆 ============ -->
+  <section class="section" aria-labelledby="rsvp-label">
+    <p class="label" id="rsvp-label" data-reveal>回　覆</p>
+
+    <!-- [替換文案] 截止日期與稱呼 -->
+    <p class="rsvp-note" data-reveal>如蒙賜覆，懇請於 <strong>2026 年 12 月 14 日</strong>前填寫回覆表。</p>
+
+    <div class="form-wrap" data-reveal>
+      <div class="form-frame">
+        <iframe
+          title="婚禮出席回覆表"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform?embedded=true"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="form-hint">表單較長，請在框內向下滑動填寫；或<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform" target="_blank" rel="noopener">另開視窗填寫</a>。</p>
+    </div>
+
+    <p class="phones" data-reveal>或致電　<a href="tel:+85251939222">5193 9222</a>（彥麟）　·　<a href="tel:+85253263888">5326 3888</a>（綺彤）</p>
+  </section>
+
+  <footer class="foot">
+    <p>JAISY &amp; KEN　·　2027.03.14</p>
+  </footer>
+
+</main>
+
+<!-- 鼠標小心心（觸控裝置與 reduced-motion 下不啟動） -->
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+
+<!-- 相片大圖檢視 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="相片大圖" hidden>
+  <img class="lb-img" id="lb-img" alt="">
+  <button class="lb-btn lb-close" type="button" aria-label="關閉">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" type="button" aria-label="上一張">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5L7 12l7 7" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+  </button>
+  <button class="lb-btn lb-next" type="button" aria-label="下一張">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5l7 7-7 7" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+  </button>
+  <p class="lb-count" id="lb-count"></p>
+</div>
+
+<script>
+/* 封面照視差：捲動時在框內慢慢下移，幅度 7%（相片本身放大 16% 留了餘量） */
+(function () {
+  var fig = document.querySelector('.cover-photo');
+  var img = fig && fig.querySelector('img');
+  if (!img) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var queued = false;
+  function update() {
+    queued = false;
+    var r = fig.getBoundingClientRect();
+    var p = (-r.top) / (r.height || 1);
+    p = Math.max(0, Math.min(1, p));
+    img.style.transform = 'translate3d(0,' + (p * 6).toFixed(2) + '%,0)';
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue, { passive: true });
+  update();
+})();
+
+/* 倒數：2027-03-14 11:00（香港時間） */
+(function () {
+  var TARGET = new Date('2027-03-14T11:00:00+08:00').getTime();
+  var box = document.getElementById('count');
+  if (!box) return;
+  var d = document.getElementById('cd-d');
+  var h = document.getElementById('cd-h');
+  var m = document.getElementById('cd-m');
+  var s = document.getElementById('cd-s');
+  var timer = null;
+  function pad(n, w) { return String(n).padStart(w, '0'); }
+  function tick() {
+    var diff = TARGET - Date.now();
+    if (diff <= 0) {
+      box.className = 'count is-today';
+      box.innerHTML = '<p class="count-today">今天，就是我們的大日子</p>';
+      if (timer) clearInterval(timer);
+      return;
+    }
+    var sec = Math.floor(diff / 1000);
+    d.textContent = pad(Math.floor(sec / 86400), 3);
+    h.textContent = pad(Math.floor(sec % 86400 / 3600), 2);
+    m.textContent = pad(Math.floor(sec % 3600 / 60), 2);
+    s.textContent = pad(sec % 60, 2);
+  }
+  tick();
+  timer = setInterval(tick, 1000);
+})();
+
+/* 相冊逐格入場：滾到才顯示，同列錯開 70ms（用 scroll 檢查，不依賴 IO） */
+(function () {
+  var album = document.querySelector('.album');
+  if (!album) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var items = album.children;
+  var queued = false;
+  album.classList.add('js-stagger');
+  function check() {
+    queued = false;
+    var vh = window.innerHeight;
+    for (var i = 0; i < items.length; i++) {
+      var el = items[i];
+      if (el.classList.contains('is-in')) continue;
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.94 && r.bottom > -40) {
+        el.style.setProperty('--d', ((i % 3) * 0.07).toFixed(2) + 's');
+        el.classList.add('is-in');
+      }
+    }
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(check); } }
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue, { passive: true });
+  check();
+})();
+
+/* 鼠標小心心：移動夠遠才長一顆，最多同時 26 顆 */
+(function () {
+  var layer = document.getElementById('hearts');
+  if (!layer) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var MAX = 26;
+  var lastTime = 0, lastX = 0, lastY = 0;
+  var HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.1C12 21.1 3.4 15.9 3.4 9.9C3.4 6.9 5.9 4.5 8.7 4.5C10.6 4.5 11.7 5.6 12 7.2C12.3 5.6 13.4 4.5 15.3 4.5C18.1 4.5 20.6 6.9 20.6 9.9C20.6 15.9 12 21.1 12 21.1Z" fill="currentColor"/></svg>';
+  function spawn(x, y) {
+    if (layer.childElementCount >= MAX) layer.removeChild(layer.firstChild);
+    var size = 9 + Math.round(Math.random() * 5);
+    var el = document.createElement('span');
+    el.className = 'heart';
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.margin = (-size / 2) + 'px 0 0 ' + (-size / 2) + 'px';
+    el.style.setProperty('--dx', (Math.random() * 24 - 12).toFixed(1) + 'px');
+    el.style.setProperty('--r', (Math.round(Math.random() * 26 - 13)) + 'deg');
+    el.style.setProperty('--dur', (0.85 + Math.random() * 0.45).toFixed(2) + 's');
+    if (Math.random() < 0.25) el.style.color = 'rgba(198,148,136,.75)';
+    el.innerHTML = HEART;
+    layer.appendChild(el);
+    el.addEventListener('animationend', function () { el.remove(); });
+  }
+  document.addEventListener('mousemove', function (e) {
+    var now = Date.now();
+    var dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if (now - lastTime < 55 || dx * dx + dy * dy < 1600) return;
+    lastTime = now; lastX = e.clientX; lastY = e.clientY;
+    spawn(e.clientX, e.clientY);
+  }, { passive: true });
+})();
+
+/* 捲動時只做 opacity .8 → 1，不位移 */
+(function () {
+  var targets = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window) || !targets.length) return;
+  Array.prototype.forEach.call(targets, function (el) { el.classList.add('reveal'); });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+  Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+})();
+
+/* 相冊：點開大圖，左右鍵換相，Esc 關 */
+(function () {
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+  var box = document.getElementById('lightbox');
+  if (!shots.length || !box) return;
+  var img = document.getElementById('lb-img');
+  var counter = document.getElementById('lb-count');
+  var closeBtn = box.querySelector('.lb-close');
+  var idx = 0, lastFocus = null;
+
+  function show(i) {
+    idx = (i + shots.length) % shots.length;
+    var b = shots[idx];
+    img.src = b.getAttribute('data-src');
+    img.alt = b.getAttribute('data-alt') || '';
+    counter.textContent = (idx + 1) + ' / ' + shots.length;
+  }
+  function open(i) {
+    lastFocus = document.activeElement;
+    show(i);
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close() {
+    box.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  shots.forEach(function (b, i) {
+    b.addEventListener('click', function () { open(i); });
+  });
+  closeBtn.addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', function () { show(idx - 1); });
+  box.querySelector('.lb-next').addEventListener('click', function () { show(idx + 1); });
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
+
+/* 複製地址 */
+(function () {
+  var btn = document.getElementById('copy-address');
+  var box = document.getElementById('address-text');
+  if (!btn || !box) return;
+  var timer;
+  function feedback(text) {
+    btn.textContent = text;
+    clearTimeout(timer);
+    timer = setTimeout(function () { btn.textContent = '複製地址'; }, 1800);
+  }
+  function legacy() {
+    var r = document.createRange(); r.selectNodeContents(box);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    try { feedback(document.execCommand('copy') ? '已複製' : '請長按複製'); }
+    catch (e) { feedback('請長按複製'); }
+    s.removeAllRanges();
+  }
+  btn.addEventListener('click', function () {
+    var text = box.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { feedback('已複製'); }, legacy);
+    } else { legacy(); }
+  });
+})();
+</script>
+</body>
+</html>
