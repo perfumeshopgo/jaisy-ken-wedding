@@ -54,27 +54,75 @@ img{ max-width:100%; display:block; }
 a{ color:var(--sage); text-decoration:none; }
 :focus-visible{ outline:1px solid var(--sage); outline-offset:3px; }
 
-/* ---------- 封面照片（滿版） ---------- */
+/* ---------- 封面照片（滿版一屏＋視差） ---------- */
 
-.cover-photo{
+.hero{
   position:relative;
   width:100%;
-  max-width:1040px;
-  margin:0 auto;
-  aspect-ratio:6/5;
+  margin:0;
+  height:100vh;
+  height:100svh;
+  min-height:540px;
+  max-height:1200px;
   overflow:hidden;
-  background:var(--cream-deep);
+  background:#2C332D;
 }
+.hero picture{ display:contents; }
 /* 相片比框高 12%，留給視差（捲動時在框內往下移，最多 6%） */
-.cover-photo img{
+.hero img{
   position:absolute;
   left:0;
   top:-6%;
   width:100%;
   height:112%;
   object-fit:cover;
-  object-position:center 46%;
+  object-position:center 44%;
   will-change:transform;
+}
+/* 上下暗角：上方壓住天空，下方要托住名字 */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    rgba(26,32,27,.30) 0%,
+    rgba(26,32,27,0) 18%,
+    rgba(26,32,27,0) 42%,
+    rgba(26,32,27,.52) 80%,
+    rgba(26,32,27,.80) 100%);
+}
+.hero-name{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:clamp(46px,9vh,104px);
+  z-index:2;
+  margin:0;
+  text-align:center;
+  font-family:var(--serif);
+  font-size:clamp(21px,2.9vw,38px);
+  line-height:1.2;
+  letter-spacing:.26em;
+  text-indent:.26em;
+  color:#F8F6F1;
+  text-shadow:0 2px 26px rgba(24,30,25,.38);
+  animation:hero-in 1.5s cubic-bezier(.22,.61,.36,1) .2s both;
+}
+.hero-name .amp{
+  font-size:.62em;
+  letter-spacing:0;
+  margin:0 .14em;
+  vertical-align:.06em;
+  opacity:.86;
+}
+@keyframes hero-in{
+  from{ opacity:0; transform:translateY(16px); }
+  to{ opacity:1; transform:none; }
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-name{ animation:none; }
 }
 
 /* ---------- 內文欄 ---------- */
@@ -595,7 +643,9 @@ a{ color:var(--sage); text-decoration:none; }
 @media (max-width:600px){
   .sheet{ padding:0 32px 72px; }
 
-  .cover-photo{ aspect-ratio:6/5; }
+  .hero{ height:88vh; height:88svh; max-height:700px; min-height:500px; }
+  .hero img{ top:0; height:100%; object-position:44% 42%; }
+  .hero-name{ bottom:clamp(40px,7vh,72px); font-size:clamp(19px,5.6vw,26px); }
 
   .cover-text{ padding:40px 32px 0; }
 
@@ -625,7 +675,8 @@ a{ color:var(--sage); text-decoration:none; }
 
 @media print{
   body{ background:#fff; }
-  .cover-photo{ height:42vh; }
+  .hero{ height:42vh; max-height:420px; }
+  .hero::after, .hero-name{ display:none; }
   .map,.copy,.form-wrap{ display:none; }
   .sheet{ max-width:none; padding:0; }
   .reveal{ opacity:1 !important; }
@@ -636,9 +687,13 @@ a{ color:var(--sage); text-decoration:none; }
 
 <body>
 
-<!-- [替換照片] 封面照：assets/cover.jpg（目前這張是從請柬 PDF 取出的，換成較寬的橫幅更佳，建議 1800px 以上） -->
-<figure class="cover-photo">
-  <img src="assets/cover.jpg" alt="JAISY 與 KEN 的婚照" fetchpriority="high">
+<!-- 封面照：滿版一屏，含視差與名字；手機用直裁版，免得把兩人裁掉 -->
+<figure class="hero">
+  <picture>
+    <source media="(max-width: 640px)" srcset="assets/hero-m.jpg">
+    <img src="assets/hero.jpg" alt="JAISY 與 KEN 在樹蔭林道上的婚照" fetchpriority="high">
+  </picture>
+  <figcaption class="hero-name">JAISY <span class="amp">&amp;</span> KEN</figcaption>
 </figure>
 
 <main class="sheet">
@@ -851,15 +906,17 @@ a{ color:var(--sage); text-decoration:none; }
 </div>
 
 <script>
-/* 封面照視差：捲動時在框內慢慢下移，幅度 7%（相片本身放大 16% 留了餘量） */
+/* 封面照視差：捲動時在框內慢慢下移，幅度 6%（相片本身高 112%，留了餘量） */
 (function () {
-  var fig = document.querySelector('.cover-photo');
+  var fig = document.querySelector('.hero');
   var img = fig && fig.querySelector('img');
   if (!img) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var narrow = window.matchMedia('(max-width: 640px)');
   var queued = false;
   function update() {
     queued = false;
+    if (narrow.matches) { img.style.transform = 'none'; return; }
     var r = fig.getBoundingClientRect();
     var p = (-r.top) / (r.height || 1);
     p = Math.max(0, Math.min(1, p));
