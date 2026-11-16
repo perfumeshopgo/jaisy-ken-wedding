@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#F6F4EF">
 <meta property="og:title" content="JAISY &amp; KEN · 2027.03.14">
 <meta property="og:description" content="2027 年 3 月 14 日 · 尖沙咀 The ONE 16 樓 The AIR">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F6F4EF'/%3E%3Cellipse cx='32' cy='32' rx='15' ry='21' fill='none' stroke='%2377826F' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20512%20512%22%20%20role=%22img%22%20aria-label=%22Jaisy%20%26amp;%20Ken%E3%80%80JK%20%E6%A8%99%E8%AA%8C%22%3E%0A%3Ccircle%20cx=%22256%22%20cy=%22256%22%20r=%22256%22%20fill=%22%233A423B%22/%3E%3Cg%20fill=%22%23F6F4EF%22%3E%3Cpath%20d=%22M839%201500V1461H639V340Q624%20287%20599.0%20219.0Q574%20151%20534.5%2087.0Q495%2023%20435.0%20-19.0Q375%20-61%20289%20-61Q212%20-61%20158.0%20-28.0Q104%205%2075.5%2055.0Q47%20105%2047%20155Q47%20197%2063.0%20226.0Q79%20255%20105.0%20270.0Q131%20285%20161%20285Q186%20285%20212.0%20273.0Q238%20261%20256.0%20235.0Q274%20209%20274%20168Q274%20128%20256.0%20103.0Q238%2078%20210.5%2067.5Q183%2057%20152%2059Q138%2061%20123.5%2072.5Q109%2084%20104%20102Q115%2071%20139.5%2043.5Q164%2016%20199.5%20-1.5Q235%20-19%20280%20-19Q352%20-19%20388.5%2022.5Q425%2064%20437.5%20152.5Q450%20241%20450%20380V1461H190V1500Z%22%20transform=%22translate(120.17,349.00)%20scale(0.11733,-0.11733)%22/%3E%3Cpath%20d=%22M256%20434%201018%201461H802V1500H1282V1461H1075L313%20434ZM62%200V39H242V1461H62V1500H632V1461H433V39H632V0ZM752%200V39H954L533%20786L657%20941L1193%2039H1372V0Z%22%20transform=%22translate(225.34,349.00)%20scale(0.11733,-0.11733)%22/%3E%3C/g%3E%0A%3C/svg%3E">
 
 <!-- 字體：Bodoni Moda（英文襯線 Didone，與請柬同一路）+ Noto Serif TC（中文明體，對應請柬的宋體感）+ Jost（地址、電話等細節）
      走鏡像源的 css2 介面（語法同 Google Fonts），失敗時回落到 Songti / Georgia 與 system-ui -->
@@ -69,7 +69,7 @@ a{ color:var(--sage); text-decoration:none; }
 }
 .hero picture{ display:contents; }
 /* 相片比框高 12%，留給視差（捲動時在框內往下移，最多 6%） */
-.hero img{
+.hero picture img{
   position:absolute;
   left:0;
   top:-6%;
@@ -93,6 +93,17 @@ a{ color:var(--sage); text-decoration:none; }
     rgba(26,32,27,.52) 80%,
     rgba(26,32,27,.80) 100%);
 }
+.hero-mark{
+  position:absolute;
+  top:clamp(26px,4.6vh,52px);
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  width:clamp(38px,4.2vw,50px);
+  height:auto;
+  opacity:.94;
+}
+
 .hero-name{
   position:absolute;
   left:0;
@@ -644,7 +655,7 @@ a{ color:var(--sage); text-decoration:none; }
   .sheet{ padding:0 32px 72px; }
 
   .hero{ height:88vh; height:88svh; max-height:700px; min-height:500px; }
-  .hero img{ top:0; height:100%; object-position:44% 42%; }
+  .hero picture img{ top:0; height:100%; object-position:44% 42%; }
   .hero-name{ bottom:clamp(40px,7vh,72px); font-size:clamp(19px,5.6vw,26px); }
 
   .cover-text{ padding:40px 32px 0; }
@@ -693,6 +704,7 @@ a{ color:var(--sage); text-decoration:none; }
     <source media="(max-width: 640px)" srcset="assets/hero-m.jpg">
     <img src="assets/hero.jpg" alt="JAISY 與 KEN 在樹蔭林道上的婚照" fetchpriority="high">
   </picture>
+  <img class="hero-mark" src="assets/logo-badge.svg" alt="" width="48" height="48">
   <figcaption class="hero-name">JAISY <span class="amp">&amp;</span> KEN</figcaption>
 </figure>
 
@@ -909,7 +921,7 @@ a{ color:var(--sage); text-decoration:none; }
 /* 封面照視差：捲動時在框內慢慢下移，幅度 6%（相片本身高 112%，留了餘量） */
 (function () {
   var fig = document.querySelector('.hero');
-  var img = fig && fig.querySelector('img');
+  var img = fig && fig.querySelector('picture img');
   if (!img) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var narrow = window.matchMedia('(max-width: 640px)');
