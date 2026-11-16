@@ -487,6 +487,8 @@ a{ color:var(--sage); text-decoration:none; }
   letter-spacing:.06em;
   color:rgba(58,66,59,.66);
 }
+.phones .who{ white-space:nowrap; }
+.phones .dot{ display:inline-block; margin:0 .82em; opacity:.72; }
 .phones a{ color:inherit; border-bottom:1px solid var(--hair); padding-bottom:1px; }
 .phones a:hover{ border-bottom-color:var(--sage); }
 
@@ -652,6 +654,8 @@ a{ color:var(--sage); text-decoration:none; }
 /* ---------- 窄屏 ---------- */
 
 @media (max-width:600px){
+  .phones .dot{ display:none; }
+  .phones .who{ display:inline-block; }
   .sheet{ padding:0 32px 72px; }
 
   .hero{ height:88vh; height:88svh; max-height:700px; min-height:500px; }
@@ -890,7 +894,7 @@ a{ color:var(--sage); text-decoration:none; }
       <p class="form-hint">表單較長，請在框內向下滑動填寫；或<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform" target="_blank" rel="noopener">另開視窗填寫</a>。</p>
     </div>
 
-    <p class="phones" data-reveal>或致電　<a href="tel:+85251939222">5193 9222</a>（彥麟）　·　<a href="tel:+85253263888">5326 3888</a>（綺彤）</p>
+    <p class="phones" data-reveal>或致電　<span class="who">Ken（彥麟）<a href="tel:+85251939222">5193 9222</a></span><span class="dot" aria-hidden="true">·</span><span class="who">Jaisy（綺彤）<a href="tel:+85253263888">5326 3888</a></span></p>
   </section>
 
   <footer class="foot">
