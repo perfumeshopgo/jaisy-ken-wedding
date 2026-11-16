@@ -566,31 +566,153 @@ details.transit b{font-weight:400;color:var(--ink)}
   border-bottom:1px solid var(--hair-2);
   padding-bottom:1px;
 }
-.form-wrap{max-width:760px;margin:0 auto}
-.form-frame{
-  height:clamp(700px,80vh,900px);
-  overflow:hidden;
-  border:1px solid var(--hair);
-  background:#fff;
-  position:relative;
+/* ---------- 回覆表單（自繪，視覺對齊請柬） ---------- */
+.rsvp-form{max-width:720px;margin:0 auto}
+.rf-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,38px)}
+.field{margin:0 0 clamp(20px,2.8vh,28px)}
+.field > label{
+  display:block;
+  font-size:12px;
+  letter-spacing:.14em;
+  color:rgba(58,66,59,.6);
+  margin-bottom:8px;
 }
-.form-frame iframe{width:100%;height:100%;border:0;filter:saturate(.2) contrast(1.02)}
-.form-frame::after{
+.field > label .req{color:var(--sage);margin-left:6px;letter-spacing:0}
+.field input[type=text],
+.field input[type=tel],
+.field input[type=email],
+.field textarea,
+.field select{
+  width:100%;
+  border:0;
+  border-bottom:1px solid var(--hair-2);
+  border-radius:0;
+  background:transparent;
+  padding:9px 0 10px;
+  font-family:inherit;
+  font-size:15px;
+  line-height:1.6;
+  letter-spacing:.04em;
+  color:var(--ink);
+  appearance:none;
+  -webkit-appearance:none;
+  transition:border-color .25s ease;
+}
+.field textarea{resize:none;min-height:44px;line-height:1.85;border-bottom-style:solid;border-bottom-color:var(--hair)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(58,66,59,.32);letter-spacing:.06em}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-bottom-color:var(--sage)}
+.field.is-bad input,.field.is-bad textarea,.field.is-bad select{border-bottom-color:var(--ink)}
+.field .err{
+  display:none;
+  margin:7px 0 0;
+  font-size:11.5px;
+  letter-spacing:.1em;
+  color:var(--ink);
+}
+.field.is-bad .err{display:block}
+.sel{position:relative}
+.sel::after{
   content:"";
   position:absolute;
-  left:0;right:0;bottom:0;
-  height:20px;
-  background:linear-gradient(to top,#fff,rgba(255,255,255,0));
+  right:2px;top:50%;
+  width:6px;height:6px;
+  border-right:1px solid var(--ink-faint);
+  border-bottom:1px solid var(--ink-faint);
+  transform:translateY(-70%) rotate(45deg);
   pointer-events:none;
 }
-.form-hint{
-  margin:12px 0 0;
-  font-size:12px;
+.field select{color:var(--ink);padding-right:22px}
+.field select:invalid{color:rgba(58,66,59,.32)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative;display:inline-flex}
+.opt input{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  opacity:0;
+  margin:0;
+  cursor:pointer;
+}
+.opt span{
+  display:inline-block;
+  padding:9px 17px;
+  border:1px solid var(--hair-2);
+  font-size:13.5px;
+  line-height:1.2;
+  letter-spacing:.08em;
+  color:var(--ink-soft);
+  transition:background .25s ease,color .25s ease,border-color .25s ease;
+}
+.opt input:checked + span{background:var(--ink);border-color:var(--ink);color:#F8F6F1}
+.opt input:focus-visible + span{outline:2px solid var(--sage);outline-offset:2px}
+.opt:hover span{border-color:var(--ink-soft)}
+.field[data-group].is-bad .opt span{border-color:var(--hair-2)}
+.rf-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  margin-top:clamp(28px,4vh,42px);
+}
+.send{
+  min-width:236px;
+  padding:16px 36px;
+  border:1px solid var(--ink);
+  background:var(--ink);
+  color:#F8F6F1;
+  font-family:inherit;
+  font-size:13px;
+  letter-spacing:.3em;
+  text-indent:.3em;
+  cursor:pointer;
+  transition:background .3s ease,border-color .3s ease,opacity .3s ease;
+}
+.send:hover{background:var(--sage);border-color:var(--sage)}
+.send[disabled]{opacity:.5;cursor:progress}
+.rf-note{
+  margin:0;
+  max-width:520px;
+  text-align:center;
+  font-size:11.5px;
+  line-height:2;
   letter-spacing:.08em;
   color:var(--ink-faint);
-  text-align:center;
 }
-.form-hint a{color:var(--sage);text-underline-offset:3px}
+.rf-note a{color:var(--sage);text-underline-offset:3px}
+.rsvp-done{padding:clamp(8px,2vh,16px) 0 clamp(34px,5vh,52px);text-align:center}
+.rsvp-done .rule{margin:0 auto clamp(26px,4vh,38px)}
+.done-title{
+  margin:0;
+  font-size:clamp(22px,3vw,28px);
+  letter-spacing:.14em;
+  color:var(--ink);
+}
+.done-text{
+  margin:clamp(14px,2vh,20px) auto 0;
+  max-width:420px;
+  font-size:14px;
+  line-height:2;
+  letter-spacing:.06em;
+  color:var(--ink-soft);
+}
+.done-again{margin:clamp(22px,3vh,30px) 0 0}
+.linkbtn{
+  border:0;
+  background:transparent;
+  padding:4px 2px;
+  font-family:inherit;
+  font-size:12.5px;
+  letter-spacing:.12em;
+  color:var(--sage);
+  border-bottom:1px solid var(--hair-2);
+  cursor:pointer;
+}
+.linkbtn:hover{border-bottom-color:var(--sage)}
+.gf-sink{position:absolute;left:-9999px;width:1px;height:1px;border:0}
+
+@media (max-width:560px){
+  .rf-row{grid-template-columns:1fr;gap:0}
+}
 .phones{
   margin:clamp(22px,3vh,30px) 0 0;
   text-align:center;
@@ -982,23 +1104,129 @@ details.transit b{font-weight:400;color:var(--ink)}
   </section>
 
   <!-- ============ 回覆 ============ -->
-  <section class="section rsvp">
-    <div class="wrap">
+  <iframe class="gf-sink" name="gf-sink" id="gf-sink" title="回覆送出緩衝" aria-hidden="true" tabindex="-1"></iframe>
+  <section class="section rsvp" id="rsvp">
+    <div class="wrap-narrow">
       <div class="head">
         <span class="en">R.S.V.P.</span>
         <span class="zh">回　覆</span>
       </div>
 
-      <p class="rsvp-note">如蒙賜覆，懇請於 <strong>2027 年 1 月 14 日</strong>前填寫回覆表。</p>
+      <p class="rsvp-note">如蒙賜覆，懇請於 <strong>2027 年 1 月 14 日</strong>前回覆；座位編排以回覆先後為序。</p>
 
-      <div class="form-wrap">
-        <div class="form-frame">
-          <iframe
-            title="婚禮出席回覆表"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform?embedded=true"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <form class="rsvp-form" id="rsvp-form" method="post"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/formResponse"
+            target="gf-sink" novalidate>
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="pageHistory" value="0">
+        <input type="hidden" name="fbzx" value="-1300200907415053835">
+
+        <div class="rf-row">
+          <div class="field">
+            <label for="f-name">稱謂／姓名<span class="req">*</span></label>
+            <input id="f-name" name="entry.123854599" type="text" autocomplete="name" placeholder="陳大文　先生／小姐">
+            <p class="err">請填寫稱謂或姓名</p>
+          </div>
+          <div class="field">
+            <label for="f-tel">聯絡電話<span class="req">*</span></label>
+            <input id="f-tel" name="entry.1378854022" type="tel" inputmode="tel" autocomplete="tel" placeholder="9123 4567">
+            <p class="err">請填寫可聯絡的電話</p>
+          </div>
         </div>
-        <p class="form-hint">表單較長，請在框內向下滑動填寫；或<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform" target="_blank" rel="noopener">另開視窗填寫</a>。</p>
+
+        <div class="field">
+          <label for="f-mail">電郵地址（選填）</label>
+          <input id="f-mail" name="entry.1380732582" type="email" autocomplete="email" placeholder="name@example.com">
+        </div>
+
+        <div class="field" data-group="ceremony">
+          <label>會出席【觀禮儀式】嗎？<span class="req">*</span></label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="entry.838785818" value="會出席"><span>會出席</span></label>
+            <label class="opt"><input type="radio" name="entry.838785818" value="不會出席"><span>不會出席</span></label>
+          </div>
+          <p class="err">請選擇是否出席觀禮</p>
+        </div>
+
+        <div class="field" data-group="banquet">
+          <label>會出席【Cocktail 婚宴】嗎？<span class="req">*</span></label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="entry.334902224" value="會出席"><span>會出席</span></label>
+            <label class="opt"><input type="radio" name="entry.334902224" value="不會出席"><span>不會出席</span></label>
+          </div>
+          <p class="err">請選擇是否出席婚宴</p>
+        </div>
+
+        <div class="rf-row">
+          <div class="field">
+            <label for="f-num">出席總人數（包括您本人）<span class="req">*</span></label>
+            <div class="sel">
+              <select id="f-num" name="entry.152695712">
+                <option value="">請選擇</option>
+                <option value="1 位">1 位</option>
+                <option value="2 位">2 位</option>
+                <option value="3 位">3 位</option>
+                <option value="4 位">4 位</option>
+                <option value="5 位">5 位</option>
+                <option value="6 位或以上">6 位或以上</option>
+              </select>
+            </div>
+            <p class="err">請選擇出席人數</p>
+          </div>
+          <div class="field" data-group="transport">
+            <label>需要交通／泊車資訊嗎？</label>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="entry.604929682" value="需要，請提供"><span>需要</span></label>
+              <label class="opt"><input type="radio" name="entry.604929682" value="不需要，謝謝"><span>不需要</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field" data-group="diet">
+          <label>飲食需要（可多選）<span class="req">*</span></label>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="沒有特別需要" checked><span>沒有特別需要</span></label>
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="素食"><span>素食</span></label>
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="不吃牛肉"><span>不吃牛肉</span></label>
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="不吃豬肉"><span>不吃豬肉</span></label>
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="不吃海鮮"><span>不吃海鮮</span></label>
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="食物敏感（請於下一題說明）"><span>食物敏感</span></label>
+            <label class="opt"><input type="checkbox" name="entry.668903285" value="其他（請於下一題說明）"><span>其他</span></label>
+          </div>
+          <p class="err">請選擇飲食安排</p>
+        </div>
+
+        <div class="field">
+          <label for="f-guests">同行賓客姓名（方便排座位）</label>
+          <textarea id="f-guests" name="entry.1660539031" rows="2" placeholder="如：陳太、陳小明"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f-diet">食物敏感／其他飲食備註</label>
+          <textarea id="f-diet" name="entry.25806995" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f-wish">給 Jaisy &amp; Ken 的祝福</label>
+          <textarea id="f-wish" name="entry.1680706321" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="f-note">其他備註或查詢</label>
+          <textarea id="f-note" name="entry.1351121824" rows="2"></textarea>
+        </div>
+
+        <div class="rf-actions">
+          <button class="send" type="submit">送出回覆</button>
+          <p class="rf-note" id="rf-note">回覆會直接進入 Jaisy &amp; Ken 的出席名單；截止前可再填一次更新。<br>若未能送出，可<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform" target="_blank" rel="noopener">直接開啟原表單</a>。</p>
+        </div>
+      </form>
+
+      <div class="rsvp-done" id="rsvp-done" hidden>
+        <div class="rule" aria-hidden="true"><span class="gem"></span></div>
+        <p class="done-title">多謝您嘅回覆</p>
+        <p class="done-text">我哋已收到您嘅回覆，會盡快同您確認座位安排，期待當日同您見面。</p>
+        <p class="done-again"><button type="button" class="linkbtn" id="rsvp-again">再填一份回覆</button></p>
       </div>
 
       <p class="phones">或致電　<span class="who">Ken（彥麟）<a href="tel:+85251939222">5193 9222</a></span><span class="dot" aria-hidden="true">·</span><span class="who">Jaisy（綺彤）<a href="tel:+85253263888">5326 3888</a></span></p>
@@ -1222,6 +1450,104 @@ details.transit b{font-weight:400;color:var(--ink)}
     if (e.animationName === 'curtainOut') done();
   });
   setTimeout(done, 3000);
+})();
+
+/* 回覆表單：自繪 UI，靜默送出到同一份 Google Form，資料照樣入 Jaisy & Ken 的試算表 */
+(function () {
+  var form = document.getElementById('rsvp-form');
+  var sink = document.getElementById('gf-sink');
+  var done = document.getElementById('rsvp-done');
+  var note = document.getElementById('rf-note');
+  if (!form || !sink || !done) return;
+  var btn = form.querySelector('.send');
+  var armed = false, finished = false;
+  var fallbackHtml = note.innerHTML;
+
+  function mark(el, on) {
+    var f = el.closest('.field');
+    if (f) f.classList.toggle('is-bad', on);
+  }
+  function bad(field) {
+    field.classList.add('is-bad');
+    return field;
+  }
+  function firstBad() { return form.querySelector('.field.is-bad'); }
+
+  form.addEventListener('input', function (e) {
+    var f = e.target.closest('.field');
+    if (f) f.classList.remove('is-bad');
+  });
+  form.addEventListener('change', function (e) {
+    var f = e.target.closest('.field');
+    if (f) f.classList.remove('is-bad');
+  });
+
+  function validate() {
+    var ok = true, first = null;
+    form.querySelectorAll('.field.is-bad').forEach(function (f) { f.classList.remove('is-bad'); });
+    function fail(sel) {
+      var f = form.querySelector(sel).closest('.field');
+      if (!f.classList.contains('is-bad')) { bad(f); }
+      if (!first) first = f;
+      ok = false;
+    }
+    if (!form.querySelector('#f-name').value.trim()) fail('#f-name');
+    if (!form.querySelector('#f-tel').value.trim()) fail('#f-tel');
+    if (!form.querySelector('input[name="entry.838785818"]:checked')) fail('input[name="entry.838785818"]');
+    if (!form.querySelector('input[name="entry.334902224"]:checked')) fail('input[name="entry.334902224"]');
+    if (!form.querySelector('#f-num').value) fail('#f-num');
+    if (!form.querySelector('input[name="entry.668903285"]:checked')) fail('input[name="entry.668903285"]');
+    if (first) {
+      var top = first.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+    return ok;
+  }
+
+  function showDone() {
+    if (finished) return;
+    finished = true;
+    form.hidden = true;
+    done.hidden = false;
+    done.classList.add('on');
+    var top = done.getBoundingClientRect().top + window.pageYOffset - 90;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  sink.addEventListener('load', function () {
+    if (!armed) return;
+    armed = false;
+    showDone();
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validate()) return;
+    btn.disabled = true;
+    btn.textContent = '送出中…';
+    armed = true;
+    form.submit();
+    setTimeout(function () {
+      if (finished) return;
+      btn.disabled = false;
+      btn.textContent = '送出回覆';
+      note.innerHTML = '網絡似乎未回應。請<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTOmo_b-5EzEZPri37rpBD7QFE5pnJQ4CM7v0QpG1DTbPkIg/viewform" target="_blank" rel="noopener">直接開啟原表單</a>提交，或稍後再試。';
+    }, 9000);
+  });
+
+  document.getElementById('rsvp-again').addEventListener('click', function () {
+    form.reset();
+    form.hidden = false;
+    done.hidden = true;
+    done.classList.remove('on');
+    finished = false; armed = false;
+    btn.disabled = false;
+    btn.textContent = '送出回覆';
+    note.innerHTML = fallbackHtml;
+       var top = form.getBoundingClientRect().top + window.pageYOffset - 90;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    form.querySelector('#f-name').focus();
+  });
 })();
 </script>
 </body>
