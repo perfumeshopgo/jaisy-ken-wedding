@@ -430,11 +430,12 @@ a{color:inherit}
 }
 .shot:hover img,.shot:focus-visible img{transform:scale(1.05)}
 .shot:hover::after,.shot:focus-visible::after{opacity:1}
-.album.js-stagger li{opacity:0;transform:translateY(10px)}
+.album.js-stagger li{opacity:0;transform:translateY(16px)}
 .album.js-stagger li.is-in{
   opacity:1;
   transform:none;
-  transition:opacity .7s ease var(--d,0s),transform .8s cubic-bezier(.22,.61,.36,1) var(--d,0s);
+  transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),
+             transform .95s cubic-bezier(.18,.74,.16,1) var(--d,0s);
 }
 .album-note{
   margin:clamp(20px,3vh,28px) 0 0;
@@ -1079,37 +1080,49 @@ details.transit b{font-weight:400;color:var(--ink)}
   timer = setInterval(tick, 1000);
 })();
 
-/* 相片逐格入場：滾到才顯示，同列錯開；1.5 秒後保險全開（無滾動事件也看得到） */
+/* 相片逐格入場：滾到才顯示，同一列由左至右錯開（欄數自動偵測，手機兩欄亦適用） */
 (function () {
   var album = document.getElementById('album');
   if (!album) return;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var items = Array.prototype.slice.call(album.children);
-  function reveal(el) {
-    if (el.classList.contains('is-in')) return;
-    var i = items.indexOf(el);
-    el.style.setProperty('--d', ((i % 4) * 0.06).toFixed(2) + 's');
+  var cols = 4;
+  album.classList.add('js-stagger');
+
+  function measure() {
+    var t = window.getComputedStyle(album).gridTemplateColumns || '';
+    var n = t.split(' ').filter(function (v) { return v.trim(); }).length;
+    if (n >= 2) cols = n;
+  }
+  function reveal(el, i) {
+    el.style.setProperty('--d', ((i % cols) * 0.12).toFixed(2) + 's');
     el.classList.add('is-in');
   }
-  function revealAll() { items.forEach(reveal); }
-  if (reduce.matches) { return; }
-  album.classList.add('js-stagger');
-  var queued = false;
   function check() {
-    queued = false;
     var vh = window.innerHeight;
     for (var i = 0; i < items.length; i++) {
-      var el = items[i];
-      if (el.classList.contains('is-in')) continue;
-      var r = el.getBoundingClientRect();
-      if (r.top < vh * 0.94 && r.bottom > -40) reveal(el);
+      if (items[i].classList.contains('is-in')) continue;
+      var r = items[i].getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > -60) reveal(items[i], i);
     }
   }
-  function queue() { if (!queued) { queued = true; requestAnimationFrame(check); } }
-  window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', queue, { passive: true });
+  measure();
   check();
-  setTimeout(revealAll, 1500);
+  var queued = false;
+  function queue() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; measure(); check(); });
+  }
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  window.addEventListener('load', queue);
+  /* 無滾動事件（例如程式化截圖）時補幾次檢查，避免整段空白 */
+  var ticks = 0;
+  var timer = setInterval(function () {
+    measure(); check();
+    if (++ticks > 28) clearInterval(timer);
+  }, 300);
 })();
 
 /* 大圖檢視 */
