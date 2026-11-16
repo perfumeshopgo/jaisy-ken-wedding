@@ -709,6 +709,7 @@ details.transit b{font-weight:400;color:var(--ink)}
 }
 
 @media (prefers-reduced-motion:reduce){
+  .curtain{display:none}
   .hero picture img{transform:none !important}
   .hero-names,.cue{animation:none}
   .album.js-stagger li{opacity:1;transform:none}
@@ -727,10 +728,49 @@ details.transit b{font-weight:400;color:var(--ink)}
   .album.js-stagger li{opacity:1;transform:none}
   section,.entry{break-inside:avoid}
 }
+/* ===== 載入過場 ===== */
+.curtain{
+  position:fixed; inset:0; z-index:120;
+  display:grid; place-items:center;
+  background:var(--cream);
+  animation:curtainOut .8s ease 1.5s forwards;
+}
+.curtain-inner{
+  display:grid; justify-items:center; gap:18px;
+  animation:curtainIn .9s ease both;
+}
+.curtain-inner img{opacity:.92}
+.curtain-names{
+  font-family:"Jost","Helvetica Neue",Arial,sans-serif;
+  font-size:10px; letter-spacing:.44em; text-indent:.44em;
+  text-transform:uppercase; color:var(--ink-soft);
+}
+.curtain-rule{
+  display:block; position:relative; width:120px; height:1px;
+  background:var(--hair);
+  overflow:hidden;
+}
+.curtain-rule i{
+  position:absolute; inset:0; display:block;
+  background:var(--ink-faint);
+  transform:scaleX(0); transform-origin:left center;
+  animation:curtainLine 1.5s cubic-bezier(.25,.7,.2,1) .12s forwards;
+}
+@keyframes curtainLine{to{transform:scaleX(1)}}
+@keyframes curtainIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes curtainOut{to{opacity:0;visibility:hidden}}
 </style>
 </head>
 
 <body>
+<!-- 載入過場：奶油白幕停留約 1.5 秒，再淡出揭開 hero（純 CSS 計時，JS 只負責移除） -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <div class="curtain-inner">
+    <img src="assets/logo.svg" alt="" width="60" height="60">
+    <span class="curtain-names">JAISY &amp; KEN</span>
+    <span class="curtain-rule"><i></i></span>
+  </div>
+</div>
 
 <!-- ============ 封面 ============ -->
 <figure class="hero">
@@ -1158,6 +1198,17 @@ details.transit b{font-weight:400;color:var(--ink)}
     alive++;
     h.addEventListener('animationend', function () { h.remove(); alive--; });
   }, { passive: true });
+})();
+
+/* 載入過場：動畫自行計時，JS 只負責收尾移除，避免遮住頁面 */
+(function () {
+  var c = document.getElementById('curtain');
+  if (!c) return;
+  function done() { if (c && c.parentNode) c.parentNode.removeChild(c); }
+  c.addEventListener('animationend', function (e) {
+    if (e.animationName === 'curtainOut') done();
+  });
+  setTimeout(done, 3000);
 })();
 </script>
 </body>
